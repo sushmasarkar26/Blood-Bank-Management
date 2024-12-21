@@ -41,6 +41,10 @@ app.use("/api/v1/admin", require("./routes/adminRoutes"));
 //   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 // })
 
+app.get("/", (req,res) => {
+  res.send("Welcome");
+});
+
 //port
 const PORT = process.env.PORT || 3000;
 
