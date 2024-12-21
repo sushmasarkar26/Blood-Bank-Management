@@ -4,7 +4,7 @@ const colors = require("colors");
 const morgan = require("morgan");
 const cors = require("cors");
 const connectDB = require("./config/db");
-const path = require('path')
+// const path = require('path')
 //dot config
 dotenv.config();
 
@@ -16,7 +16,12 @@ const app = express();
 
 //middlewares
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+  origin:process.env.FRONTEND_URL,
+  methods: ["GET","POST","PUT","DETETE"],
+  allowedHeaders: ["content-Type", "Authorization"],
+  credentials: true
+));
 app.use(morgan("dev"));
 
 //routes
@@ -28,12 +33,12 @@ app.use("/api/v1/analytics", require("./routes/analyticsRoutes"));
 app.use("/api/v1/admin", require("./routes/adminRoutes"));
 
 //STATIC FOLDER
-app.use(express.static(path.join(__dirname,'../client/build')));
+// app.use(express.static(path.join(__dirname,'../client/build')));
 
-//STATIC ROUTES
-app.get("*", function (Request, res){
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
-})
+// //STATIC ROUTES
+// app.get("*", function (Request, res){
+//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
+// })
 
 //port
 const PORT = process.env.PORT || 3000;
