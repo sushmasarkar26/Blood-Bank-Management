@@ -16,12 +16,13 @@ const app = express();
 
 //middlewares
 app.use(express.json());
-app.use(cors(
-  origin:process.env.FRONTEND_URL,
-  methods: ["GET","POST","PUT","DETETE"],
-  allowedHeaders: ["content-Type", "Authorization"],
-  credentials: true
-));
+app.use(cors());
+// app.use(cors(
+//   origin:process.env.FRONTEND_URL,
+//   methods: ["GET","POST","PUT","DETETE"],
+//   allowedHeaders: ["content-Type", "Authorization"],
+//   credentials: true
+// ));
 app.use(morgan("dev"));
 
 //routes
